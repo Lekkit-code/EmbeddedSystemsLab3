@@ -36,12 +36,12 @@ int main (void) {
 	return 0;
 }
 
-ISR(TIMER2_COMPA_vect) //When the interrupt triggers, updates the brightness of the LED, starts a new ADC-conversion and clears the interrupt flag.
+ISR(TIMER2_COMPA_vect) //When the interrupt triggers, updates the brightness of the LED, incremets the 10millisecond counter, starts a new ADC-conversion and clears the interrupt flag.
 {
 	s = button_check(s);
 	OCR0A = simple_ramp();
 	ten_millis++;
-	ADCSRA |= (1 << ADSC);
+	start_ADC();
 	TIFR2 &= ~(1 << OCF2A);
 }
 
