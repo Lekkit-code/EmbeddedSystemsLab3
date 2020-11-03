@@ -15,3 +15,7 @@ void enable_PWM(void) {
 	TCCR0A |= (1 << WGM01) | (1 << WGM00) | (1 << COM0A1); //Set the mode of TC0 to Fast PWM non-inverted mode.
 	TCCR0B |= (1 << CS01) | (1 << CS00);	//Set the prescaler of TC0 to 64.
 }
+
+void disable_PWM(void) {
+	TCCR0A &= ~(1 << COM0A1); //Set the mode of TC0 to normal.
+}
