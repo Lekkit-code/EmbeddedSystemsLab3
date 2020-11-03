@@ -9,3 +9,7 @@ void potentiometer_init(void) {
 	ADCSRA |= (1 << ADIE); //Enables the conversion complete interrupt.
 	ADCSRA |= (1 << ADEN); //Enables the ADC.
 }
+
+void disable_ADC(void) {
+	ADCSRA &= ~(1 << ADEN);
+}

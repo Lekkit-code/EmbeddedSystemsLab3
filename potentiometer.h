@@ -2,5 +2,5 @@
 #define POTENTIOMETER_H_
 
 void potentiometer_init(void);
-
+void disable_ADC(void);
 #endif
