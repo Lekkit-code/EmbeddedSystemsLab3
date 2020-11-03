@@ -45,7 +45,7 @@ ISR(TIMER2_COMPA_vect) //When the interrupt triggers, updates the brightness of 
 	TIFR2 &= ~(1 << OCF2A);
 }
 
-ISR(ADC_vect) //When the interrupt triggers because an ADC-conversion is complete, updates the read value.
+ISR(ADC_vect) //When the interrupt triggers because an ADC-conversion is complete, updates the read value and clears the interrupt flag.
 {
 	OCR0A = adc_value;
 	adc_value = ADCH;

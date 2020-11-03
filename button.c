@@ -34,7 +34,8 @@ void print_button_state(void) //Prints HIGH if the button is pressed or LOW if i
 	}
 }
 
-enum STATE button_check(enum STATE s) {
+enum STATE button_check(enum STATE s) //Checks to see if the button state changed. If it went from HIGH to LOW, returns the next state. Otherwise, returns the same state.
+{
 	static bool last_button_state;
 	static bool button_pressed;
 	button_pressed = button_state();

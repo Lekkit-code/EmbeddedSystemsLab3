@@ -42,7 +42,8 @@ void LED_blink(uint32_t current_ten_millis) {
 	}
 }
 
-void handle_LED(enum STATE s, uint32_t current_ten_millis) {
+void handle_LED(enum STATE s, uint32_t current_ten_millis) //Checks the state and handles LED accordingly.
+{
 	switch (s) {
 	case PULSE:
 		enable_PWM();
@@ -61,7 +62,6 @@ void handle_LED(enum STATE s, uint32_t current_ten_millis) {
 		LED_off();
 		disable_ADC();
 		disable_PWM();
-
 		break;
 	}
 }
