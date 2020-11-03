@@ -2,5 +2,6 @@
 #define BUTTON_H_
 
 void button_init(void);
+bool button_state(void);
 
 #endif
