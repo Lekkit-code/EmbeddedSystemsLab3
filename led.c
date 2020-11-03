@@ -4,6 +4,7 @@
 
 #define LED_PIN 6
 #define LED_PORT PORTD
+#define BLINK_DELAY_TEN_MILLIS 100
 
 void LED_init(void) {
 	DDRD |= (1 << LED_PIN);
@@ -24,4 +25,12 @@ uint8_t simple_ramp() {
 
 void LED_flip(void) {
 	LED_PORT ^= (1 << LED_PIN);
+}
+
+void LED_blink(uint32_t current_ten_millis) {
+	static uint32_t last_ten_millis = 0;
+	if (BLINK_DELAY_TEN_MILLIS < current_ten_millis - last_ten_millis) {
+		LED_flip();
+		last_ten_millis = current_ten_millis;
+	}
 }
