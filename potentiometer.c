@@ -19,3 +19,8 @@ void enable_ADC(void) //Enables the ADC.
 {
 	ADCSRA |= (1 << ADEN);
 }
+
+void start_ADC(void) //Starts a new sampling through the ADC.
+{
+	ADCSRA |= (1 << ADSC);
+}
