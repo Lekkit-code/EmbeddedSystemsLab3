@@ -21,3 +21,7 @@ uint8_t simple_ramp() {
 	brightness += dir;
 	return brightness;
 }
+
+void LED_flip(void) {
+	LED_PORT ^= (1 << LED_PIN);
+}
