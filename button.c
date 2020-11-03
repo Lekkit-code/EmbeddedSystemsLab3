@@ -16,3 +16,16 @@ bool button_state(void) {
 		return false;
 	}
 }
+void print_button_state(void) {
+	static bool last_button_state;
+	static bool button_pressed;
+	button_pressed = button_state();
+	if (button_pressed == true && last_button_state != button_pressed) {
+		printf("HIGH\n");
+		last_button_state = button_pressed;
+	}
+	else if (button_pressed == false && last_button_state != button_pressed) {
+		printf("LOW\n");
+		last_button_state = button_pressed;
+	}
+}
