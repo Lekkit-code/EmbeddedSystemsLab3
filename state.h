@@ -8,4 +8,6 @@ enum STATE {
 	OFF
 };
 
+enum STATE get_next_state(enum STATE s);
+
 #endif
