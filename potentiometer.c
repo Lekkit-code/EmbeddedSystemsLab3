@@ -13,3 +13,7 @@ void potentiometer_init(void) {
 void disable_ADC(void) {
 	ADCSRA &= ~(1 << ADEN);
 }
+
+void enable_ADC(void) {
+	ADCSRA |= (1 << ADEN);
+}
