@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "serial.h"
 #include <avr/pgmspace.h>
+#include "state.h"
 
 
 void button_init(void) //Sets the PD2 pin as input. This represents the pin2 on Arduino Uno.
@@ -32,3 +33,18 @@ void print_button_state(void) //Prints HIGH if the button is pressed or LOW if i
 		last_button_state = button_pressed;
 	}
 }
+
+enum STATE button_check(enum STATE s) {
+	static bool last_button_state;
+	static bool button_pressed;
+	button_pressed = button_state();
+	if (button_pressed == true && last_button_state != button_pressed) {
+		last_button_state = button_pressed;
+	}
+	else if (button_pressed == false && last_button_state != button_pressed) {
+		s = get_next_state(s);
+		last_button_state = button_pressed;
+	}
+	return s;
+}
+

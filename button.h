@@ -4,5 +4,6 @@
 void button_init(void);
 bool button_state(void);
 void print_button_state(void);
+enum STATE button_check(enum STATE);
 
 #endif
