@@ -7,7 +7,7 @@ void potentiometer_init(void) {
 	ADMUX |= (1 << ADLAR); //Sets out conversion results to be left adjusted.
 	ADCSRA |= (1 << ADPS0) | (1 << ADPS1); //Sets the prescaler to 8.
 	ADCSRA |= (1 << ADIE); //Enables the conversion complete interrupt.
-	ADCSRA |= (1 << ADEN); //Enables the ADC.
+	enable_ADC();
 }
 
 void disable_ADC(void) {
