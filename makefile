@@ -7,7 +7,8 @@ SOURCES = \
 		  led.c \
 		  timer.c\
 		  button.c\
-		  potentiometer.c
+		  potentiometer.c\
+		  state.c
 
 PORT = /dev/ttyS4# Arduinons serieport — kan vara ttyACM1, kolla dmesg!
 
