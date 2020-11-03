@@ -1,6 +1,9 @@
 #include <avr/io.h>
 #include "led.h"
 #include <stdint.h>
+#include "state.h"
+#include "timer.h"
+#include "potentiometer.h"
 
 #define LED_PIN 6
 #define LED_PORT PORTD
@@ -27,10 +30,38 @@ void LED_flip(void) {
 	LED_PORT ^= (1 << LED_PIN);
 }
 
+void LED_off(void){
+	LED_PORT &= ~(1 << LED_PIN);
+}
+
 void LED_blink(uint32_t current_ten_millis) {
 	static uint32_t last_ten_millis = 0;
 	if (BLINK_DELAY_TEN_MILLIS < current_ten_millis - last_ten_millis) {
 		LED_flip();
 		last_ten_millis = current_ten_millis;
+	}
+}
+
+void handle_LED(enum STATE s, uint32_t current_ten_millis) {
+	switch (s) {
+	case PULSE:
+		enable_PWM();
+		disable_ADC();
+		break;
+	case POTENTIOMETER:
+		enable_PWM();
+		enable_ADC();
+		break;
+	case BLINK:
+		disable_ADC();
+		disable_PWM();
+		LED_blink(current_ten_millis);
+		break;
+	case OFF:
+		LED_off();
+		disable_ADC();
+		disable_PWM();
+
+		break;
 	}
 }
