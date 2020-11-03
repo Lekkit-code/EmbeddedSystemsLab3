@@ -5,10 +5,12 @@
 #include <avr/pgmspace.h>
 
 
-void button_init(void) {
+void button_init(void) //Sets the PD2 pin as input. This represents the pin2 on Arduino Uno.
+{
 	DDRD &= ~(PORTD<<PIND2);
 }
-bool button_state(void) {
+bool button_state(void) //Checks to see if the PD2 is high or not and returns true if it is. Returns false otherwise.
+{
 	if ((PIND & (1 << PIND2)) == (1 << PIND2)) {
 		return true;
 	}
@@ -16,7 +18,8 @@ bool button_state(void) {
 		return false;
 	}
 }
-void print_button_state(void) {
+void print_button_state(void) //Prints HIGH if the button is pressed or LOW if it's not. Only prints if there's been a change of the button state.
+{
 	static bool last_button_state;
 	static bool button_pressed;
 	button_pressed = button_state();
